@@ -146,8 +146,15 @@ st.markdown("""
 # Load data
 @st.cache_resource
 def load_data():
-    movies = pickle.load(open('movie_list.pkl', 'rb'))
-    similarity = pickle.load(open('similarity.pkl', 'rb'))
+    # Get the directory of the current script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    # Construct absolute paths
+    movie_list_path = os.path.join(script_dir, 'movie_list.pkl')
+    similarity_path = os.path.join(script_dir, 'similarity.pkl')
+    
+    movies = pickle.load(open(movie_list_path, 'rb'))
+    similarity = pickle.load(open(similarity_path, 'rb'))
     return movies, similarity
 
 movies, similarity = load_data()
